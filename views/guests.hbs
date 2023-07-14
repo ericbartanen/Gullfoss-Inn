@@ -1,0 +1,89 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2> Guests </h2>
+
+<div>
+    <table id="guestsTable">
+        <thead>
+            <tr>
+                <th>Guest ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>VIP Status</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr data-value={{this.guest_id}}>
+                <td>{{this.guest_id}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{vip this.vip}}</td>
+                <td><button onclick="deleteGuest({{this.guest_id}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/deleteGuest.js"></script>
+</div>
+
+<div>
+    <form id="addGuestForm">
+        <legend><strong>Add New Guest</strong></legend>
+        <fieldset class="fields">
+
+            <label>First Name</label>
+            <input type="text" name="first_name" id="first_name">
+
+            <label>Last Name</label>
+            <input type="text" name="last_name" id="last_name">
+
+            <label>Email</label>
+            <input type="email" name="email" id="email">
+
+            <label>VIP</label>
+            <select name="vip" id="vip">
+                <option value="0" selected>No</option>
+                <option value="1">Yes</option>
+            </select>
+            <input type="submit" class="btn" id="addGuest" value="Submit">
+        </fieldset>
+    </form>
+    <script src="./js/addGuest.js"></script>
+</div>
+
+<div>
+    <form id="updateGuest">
+        <legend><strong>Update Guest</strong></legend>
+        <fieldset class="fields">
+            
+            <label for="guestSelect">Guest</label>
+            <select name="guestSelect" id="guestSelect">
+                <option value="title">Select a Guest</option>
+                {{#each data}}
+                <option value="{{this.guest_id}}">{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}           
+            </select>
+
+            <label>First Name</label>
+            <input type="text" name="first_name" id="update_first_name">
+
+            <label>Last Name</label>
+            <input type="text" name="last_name" id="update_last_name">
+
+            <label>Email</label>
+            <input type="email" name="email" id="update_email">
+
+            <label for="VIP"></label>
+            <select name="vip" id="update_vip">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+            <input type="submit" class="btn" id="updateGuest" value="Update">
+        </fieldset>
+    </form>
+    <script src="./js/updateGuest.js"></script>
+</div>

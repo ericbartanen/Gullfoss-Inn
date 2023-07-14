@@ -1,0 +1,132 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2>Bookings</h2>
+<div>
+    <table id="bookings-table">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Number of Guests</th>
+                <th>Bed Type</th>
+                <th>Room Number</th>
+                <th>Room Type</th>
+                <th>Check-in Date</th>
+                <th>Number of Nights</th>
+                <th>Total Rate</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each data}}
+            <tr data-value={{this.booking_id}}>
+                <td>{{this.booking_id}}</td>
+                {{#if first_name}}<td>{{this.first_name}}</td>{{else}}<td>NULL</td>{{/if}}
+                {{#if last_name}}<td>{{this.last_name}}</td>{{else}}<td>NULL</td>{{/if}}
+                <td>{{this.number_of_guests}}</td>
+                <td>{{this.bed_type}}</td>
+                {{#if room_number}}<td>{{this.room_number}}</td>{{else}}<td>NULL</td>{{/if}}
+                {{#if room_type_name}}<td>{{this.room_type_name}}</td>{{else}}<td>NULL</td>{{/if}}
+                <td>{{{dateFormat this.check_in_date "L"}}}</td>
+                <td>{{this.number_of_nights}}</td>
+                {{#if total_rate}}<td>{{currency this.total_rate}}</td>{{else}}<td>NULL</td>{{/if}}
+                <td><button onclick="deleteBooking({{this.booking_id}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/deleteBooking.js"></script>
+</div>
+
+<div>
+    <form id="addBookingForm">
+        <legend><strong>Add New Booking</strong></legend>
+        <fieldset class="fields">
+
+            <label for="guestBookingSelect">Guest</label>
+            <select name="guestBookingSelect" id="guestBookingSelect">
+                <option value="">Select a Guest</option>
+                {{#each guests}}
+                    <option value="{{this.guest_id}}">{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}   
+            </select>
+
+            <label for="roomBookingSelect">Room Number</label>
+            <select name="roomBookingSelect" id="roomBookingSelect">
+                <option value="">Select a Room Number</option>
+                {{#each rooms}}
+                    <option value="{{this.room_id}}">{{this.room_number}}</option>
+                {{/each}}           
+            </select>
+
+            <label>Number of Guests</label>
+            <input type="number" name="number_of_guests" id="number_of_guests">
+
+            <label>Bed Type</label>
+            <input type="text" name="bed_type" id="bed_type">
+
+            <label>Check-in Date</label>
+            <input type="date" name="check_in_date" id="check_in_date">
+
+            <label>Number of Nights</label>
+            <input type="number" name="number_of_nights" id="number_of_nights">
+            
+            <input type="submit" class="btn" id="addBooking" value="Submit">
+            
+        </fieldset>
+        
+    </form>
+    <script src="./js/addBooking.js"></script>
+</div>
+
+<div>
+    <form id="updateBookingForm">
+        <legend><strong>Update Booking</strong></legend>
+        <fieldset class="fields">
+            
+            <label for="bookingUpdateSelect">Booking ID</label>
+            <select name="bookingUpdateSelect" id="bookingUpdateSelect">
+                <option value="">Select a Booking ID</option>
+                {{#each data}}
+                    <option value="{{this.booking_id}}">{{this.booking_id}}</option>
+                {{/each}}           
+            </select>
+
+            <label for="guestUpdateSelect">Guest</label>
+            <select name="guestUpdateSelect" id="guestUpdateSelect">
+                <option value="">Select a Guest</option>
+                {{#each guests}}
+                    <option value="{{this.guest_id}}">{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}           
+            </select>
+
+            <label for="roomUpdateSelect">Room Number</label>
+            <select name="roomUpdateSelect" id="roomUpdateSelect">
+                <option value="title">Select a Room Number</option>
+                {{#each rooms}}
+                    <option value="{{this.room_id}}">{{this.room_number}}</option>                
+                {{/each}}           
+            </select>
+
+            <label>Number of Guests</label>
+            <input type="number" name="number of guests" id="numberOfGuests">
+
+            <label>Bed Type</label>
+            <input type="text" name="bed type" id="bedType">
+
+            <label>Check-in Date</label>
+            <input type="date" name="check-in date" id="checkInDate">
+
+            <label>Number of Nights</label>
+            <input type="number" name="number of nights" id="numberOfNights">
+
+            <input type="submit" class="btn" id="updateBooking" value="Update">
+
+        </fieldset>
+    </form>
+    <script src="./js/updateBooking.js"></script>
+
+</div>
+

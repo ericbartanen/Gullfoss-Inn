@@ -1,0 +1,74 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2> Employee Directory</h2>
+
+<div>
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job Title</th>
+                <th>Hourly Pay Rate</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr data-value="{{this.employee_id}}">
+                <td>{{this.employee_id}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.job_title}}</td>
+                <td>{{currency this.hourly_pay_rate}}</td>
+                <td><button onclick="deleteEmployee({{this.employee_id}})">Delete</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/deleteEmployee.js"></script>
+</div>
+
+<div>
+    <form id="addEmployeeForm">
+        <legend><strong>Add New Employee</strong></legend>
+        <fieldset class="fields">
+            <label> First Name </label> <input type="text" name="first name" id="first_name">
+            <label> Last Name </label> <input type="text" name="last name" id="last_name">
+            <label> Job Title </label> <input type="text" name="job title" id="job_title">
+            <label> Hourly Pay Rate </label> <input type="number" min="1" name="hourly pay rate" id="hourly_pay_rate">
+            <input class="btn" type="submit" id="addEmployee" value="Submit">
+        </fieldset>
+        <script src="./js/addEmployee.js"></script>
+    </form>
+</div>
+
+<div>
+    <form id="updateEmployeeForm">
+        <legend><strong>Update Employee Details</strong></legend>
+        <fieldset class="fields">
+            <label for="employeeSelect">Employee</label>
+            <select name="employeeSelect" id="employeeSelect">
+                 <option value="title">Select an Employee</option>
+                {{#each data}}
+                <option value="{{this.employee_id}}">{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}           
+            </select>
+            <label> First Name </label> <input type="text" name="first name" id="update_first_name">
+            <label> Last Name </label> <input type="text"  name="last name" id="update_last_name">
+            <label> Job Title </label> <input type="text" name="job title" id="update_job_title">
+            <label> Hourly Pay Rate </label> <input type="number" min="1" id="update_hourly_pay_rate">
+            <input class="btn" type="submit" id="updateEmployee" value="Update">
+        </fieldset>
+        
+    </form>
+    <script src="./js/updateEmployee.js"></script>
+</div>
+
+
+
+
+
+    
+       

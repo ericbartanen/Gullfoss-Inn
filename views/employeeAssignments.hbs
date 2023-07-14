@@ -1,0 +1,89 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2> Employee Assignments</h2>
+
+{{!-- READ Functionality: Create EmployeesByRooms table --}}
+<div>
+    <table  id="employeeAssignmentTable">
+        <thead>
+            <tr>
+                <th>Employee By Room ID </th>
+                <th>Room Number</th>
+                <th>Employee First Name</th>
+                <th>Employee Last Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each data}}
+            <tr data-value="{{this.employee_room_id}}">
+                <td>{{this.employee_room_id}}</td>
+                <td>{{this.room_number}}</td>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td><button onclick="deleteEmployeeAssignment({{this.employee_room_id}})"> Delete </button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/deleteEmployeeAssignment.js"></script>
+</div>
+
+<div>
+    <form id="addEmployeeAssignmentForm">
+        <legend><strong>Add New Employee Assignment</strong></legend>
+        <fieldset class="fields">
+            <label> Room Number </label> 
+            <select id="addRoomId" name="room id">
+                <option value="">Select Room</option>
+                {{#each rooms}}
+                <option value="{{this.room_id}}">{{this.room_number}}</option>
+                {{/each}}  
+            </select>
+            <label> Employee Name </label> 
+            <select id="addEmployeeId" name="employee id">
+                <option value="">Select Employee</option>
+                {{#each employees}}
+                <option value="{{this.employee_id}}">{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}  
+            </select>
+            <input type="submit" class="btn" id="addEmployeeAssignment" value="Submit">
+        </fieldset>
+    </form>
+    <script src="./js/addEmployeeAssignment.js"></script>
+</div>
+
+<div>
+    <form id="updateEmployeeAssignmentForm">
+        <legend><strong>Update Employee Assignment</strong></legend>
+        <fieldset class="fields">
+            <label>Assignment ID</label>
+            <select id="updateAssignmentId" name="assignment_id">
+                <option value="">Select ID</option>
+                {{#each data}}
+                <option value="{{this.employee_room_id}}">{{this.employee_room_id}}</option>
+                {{/each}}  
+            </select>
+            <label>Room Number</label>
+            <select id="updateRoomId" name="room id">
+                <option value="">Select Room</option>
+                {{#each rooms}}
+                <option value="{{this.room_id}}">{{this.room_number}}</option>
+                {{/each}}  
+            </select>
+            <label>Employee Name</label>
+            <select id="updateEmployeeId" name="employee id">
+                <option value="">Select Employee</option>
+                {{#each employees}}
+                <option value="{{this.employee_id}}">{{this.first_name}} {{this.last_name}}</option>
+                {{/each}}  
+            </select>
+            <input type="submit" class="btn" id="updateEmployeeAssignment" value="Update">
+        </fieldset>
+    </form>
+    <script src="./js/updateEmployeeAssignment.js"></script>
+</div>
+
+
+

@@ -1,0 +1,74 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2> Room Inventory </h2>
+
+<div>
+    <table id="roomsTable">
+        <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Room Number</th>
+                <th>Room Type Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr data-value="{{this.room_id}}">
+                <td>{{this.room_id}}</td>
+                <td>{{this.room_number}}</td>
+                <td>{{this.room_type_name}}</td>
+                <td><button onclick="deleteRoom({{this.room_id}})"> Delete </button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/deleteRoom.js"></script>
+</div>
+
+<div>
+    <form id="addRoomForm">
+        <legend><strong>Add New Room</strong></legend>
+        <fieldset class="fields">
+            <label> Room Number </label> 
+            <input type="number" min="0" step="1" name="room number" id="addRoomNumber">
+            <label> Room Type </label> 
+            <select name="room type" id="addRoomType">
+                <option value="">Select Room Type</option>
+                {{#each roomTypes}}
+                    <option value="{{this.room_type_id}}">{{this.room_type_name}}</option>
+                {{/each}}
+            </select>
+            <input class="btn" type="submit" id="addRoom" value="Submit">
+        </fieldset>
+    </form>
+    <script src="./js/addRoom.js"></script>
+</div>
+
+<div>
+    <form id="updateRoomForm">
+        <legend><strong>Update Room </strong></legend>
+        <fieldset class="fields">
+            <label>Room Number</label>
+            <select name="roomUpdateSelect" id="roomUpdateSelect">
+                <option value="">Select a Room Number</option>
+                {{#each data}}
+                    <option value="{{this.room_id}}">{{this.room_number}}</option>
+                {{/each}}           
+            </select>
+            <label> Room Number </label> 
+            <input type="number" min="0" step="1" name="updateRoomNumber" id="updateRoomNumber">
+            <label> Room Type </label> 
+            <select id="updateRoomType" name="updateRoomType">
+                 <option value="">Select Room Type</option>
+                {{#each roomTypes}}
+                    <option value="{{this.room_type_id}}">{{this.room_type_name}}</option>
+                {{/each}}
+            </select>
+            <input class="btn" type="submit" id="updateRoom" value="Update">
+        </fieldset>
+    </form>
+    <script src="./js/updateRoom.js"></script>
+</div>
+
+  

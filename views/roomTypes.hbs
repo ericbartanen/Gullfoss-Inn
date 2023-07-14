@@ -1,0 +1,64 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2> Room Types </h2>
+
+<div>
+    <table id="roomTypesTable">
+        <thead>
+            <tr>
+                <th>Room Type ID</th>
+                <th>Room Type Name</th>
+                <th>Rate Per Night</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr data-value="{{this.room_type_id}}">
+                <td>{{this.room_type_id}}</td>
+                <td>{{this.room_type_name}}</td>
+                <td>{{currency this.rate_per_night}}</td>
+                <td><button onclick="deleteRoomType({{this.room_type_id}})"> Delete </button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="./js/deleteRoomType.js"></script>
+</div>
+
+<div>
+    <form id="addRoomTypeForm">
+        <legend><strong>Add New Room Type</strong></legend>
+        <fieldset class="fields">
+            <label> Room Type Name</label> 
+            <input type="text" name="room_type_name" id="room_type_name">
+            <label> Rate Per Night </label> 
+            <input type="number" min="1" name="rate_per_night" id="rate_per_night">
+            <input class="btn" type="submit" id="addRoomType" value="Submit">
+        </fieldset>
+    </form>
+    <script src="./js/addRoomType.js"></script>
+</div>
+
+<div>
+    <form id="updateRoomType">
+        <legend><strong>Update Room Type</strong></legend>
+        <fieldset class="fields">
+            <label> Room Type </label> 
+            <select id="updateRoomTypeSelect" name="updateRoomTypeSelect">
+                <option value="">Select a Room Type</option>
+                {{#each data}}
+                <option value="{{this.room_type_id}}">{{this.room_type_name}}</option>
+                {{/each}} 
+            </select>
+            <label> Room Type Name </label> 
+            <input type="text" name="room_type_name" id="updateRoomTypeName">
+            <label> Rate Per Night </label> 
+            <input type="number" min="1" name="rate_per_night" id="updateRatePerNight">
+            <input class="btn" type="submit" id="updateRoomType" value="Update">
+        </fieldset>
+    </form>
+    <script src="./js/updateRoomType.js"></script>
+</div>
+
+    
