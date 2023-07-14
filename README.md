@@ -1,4 +1,4 @@
-# Gulfoss Inn
+# Gullfoss Inn
 
 <i>Group project originally completed by Eric Bartanen and Amrit Bola for OSU's CS program.</i>
 
