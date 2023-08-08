@@ -1,9 +1,9 @@
 ﻿
--- Ignore Foreign Key Checks
-SET FOREIGN_KEY_CHECKS=0;
+-- -- Ignore Foreign Key Checks
+-- SET FOREIGN_KEY_CHECKS=0;
 
--- Don't commit after each query
-SET AUTOCOMMIT = 0;
+-- -- Don't commit after each query
+-- SET AUTOCOMMIT = 0;
 
 -- Control for existing tables
 DROP TABLE IF EXISTS RoomTypes, Rooms, Guests, Bookings, Employees, EmployeesByRooms;
@@ -13,14 +13,14 @@ Create Tables
 ------------*/
 
 CREATE TABLE RoomTypes (
-        room_type_id int NOT NULL AUTO_INCREMENT,
+        room_type_id SERIAL,
         room_type_name varchar(145) NOT NULL,
         rate_per_night decimal(19,2) NOT NULL,
         PRIMARY KEY(room_type_id)
 );
 
 CREATE TABLE Rooms (
-	room_id int NOT NULL AUTO_INCREMENT,
+	room_id SERIAL,
 	room_number int UNIQUE NOT NULL,
 	room_type_id int NOT NULL,
 	PRIMARY KEY (room_id),
@@ -29,7 +29,7 @@ CREATE TABLE Rooms (
 
 -- creates table of guests with personal guest info
 CREATE TABLE Guests (
-        guest_id int NOT NULL AUTO_INCREMENT,
+        guest_id SERIAL,
         first_name varchar(145) NOT NULL,
         last_name varchar(145) NOT NULL, 
         email varchar(145) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE Guests (
 );
 
 CREATE TABLE Bookings (
-        booking_id int NOT NULL AUTO_INCREMENT, 
+        booking_id SERIAL, 
         number_of_guests int NOT NULL,
         bed_type varchar(145) NOT NULL,
         check_in_date Date NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE Bookings (
 
  -- creates table of employees with personal employee info       
 CREATE TABLE Employees (
-        employee_id int NOT NULL AUTO_INCREMENT,
+        employee_id SERIAL,
         first_name varchar(145) NOT NULL,
         last_name varchar(145) NOT NULL, 
         job_title varchar(145) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE Employees (
 
 -- Junction table for M:N relationship between Employees and Rooms. 
 CREATE TABLE EmployeesByRooms (
-        employee_room_id int NOT NULL AUTO_INCREMENT, 
+        employee_room_id SERIAL, 
         room_id int,
         employee_id int,
         PRIMARY KEY (employee_room_id),
@@ -105,5 +105,5 @@ INSERT INTO EmployeesByRooms (room_id, employee_id)
 VALUES (1, 3), (5, 4), (2, 2), (4, 1), (3, 3);
 
 -- Reestablish foreign key checks and commit queries
-SET FOREIGN_KEY_CHECKS=1;
+-- SET FOREIGN_KEY_CHECKS=1;
 COMMIT;

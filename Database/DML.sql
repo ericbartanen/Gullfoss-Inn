@@ -2,7 +2,7 @@
 ROOM TYPES
 ----------------*/
 -- get all room types
-SELECT * FROM RoomTypes 
+SELECT * FROM RoomTypes; 
 
 -- add a new room type
 INSERT INTO RoomTypes (room_type_name, rate_per_night)

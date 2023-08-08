@@ -1,18 +1,13 @@
 // DB connection code to connect with MySql database hosted on Azure
 
-var mysql = require('mysql')
-
-var pool = mysql.createPool({
-    connectionLimit : 100,
-    acquireTimeout  : 1000000,
-    connectTimeout  : 30000,
-    debug           : false,
+// const mysql = require('mysql');
+const Pool = require('pg').Pool
+const pool = new Pool({
     host            : process.env.DB_HOST,
     user            : process.env.DB_USER,
     password        : process.env.DB_PASSWORD,
     database        : process.env.DB, 
     port            : process.env.PORT,
-    // ssl             : process.env.SSL,
 })
 
 // Export 
