@@ -73,7 +73,7 @@ app.get('/bookings', function(req, res)
 
                     let rooms = rows;
                     
-                    return res.render('bookings', {data: bookings, guests: guests, rooms: rooms});
+                    return res.render('bookings', {data: bookings.rows, guests: guests.rows, rooms: rooms.rows});
                 })
             })  
         })
@@ -100,7 +100,7 @@ app.get('/rooms', function(req, res)
 
                 let roomTypes = rows;
 
-                res.render('rooms', {data: rooms, roomTypes: roomTypes});
+                res.render('rooms', {data: rooms.rows, roomTypes: roomTypes.rows});
             })
         })
     });
@@ -112,7 +112,7 @@ app.get('/roomTypes', function(req, res)
             if (error) {
                 console.log(error)
             }
-            res.render('roomTypes', {data: rows});
+            res.render('roomTypes', {data: rows.rows});
         })
     });
 
@@ -124,7 +124,8 @@ app.get('/employees', function(req, res)
             if (error) {
                 console.log(error)
             }
-            res.render('employees', {data: rows});
+
+            res.render('employees', {data: rows.rows});
         })
     });
 
@@ -156,7 +157,7 @@ app.get('/employeeAssignments', function(req, res)
 
                     let query3 = rows;
 
-                    res.render('employeeAssignments', {data: query1, rooms: query2, employees: query3});
+                    res.render('employeeAssignments', {data: query1.rows, rooms: query2.rows, employees: query3.rows});
                 })
             })
         })
@@ -170,7 +171,7 @@ app.get('/guests', function(req, res)
             if (error) {
                 console.log(error)
             }
-            res.render('guests', {data: rows});
+            res.render('guests', {data: rows.rows});
         })
     });
 
